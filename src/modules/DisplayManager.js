@@ -3,13 +3,25 @@ import { UIElement } from "./UIElement.js";
 export class DisplayManager {
   constructor() {
     this.windows = [];
+    this.windowContainer = document.createElement("window-area")
+    this.windowContainer.positon = "relative"
+    this.windowContainer.display = "inline-block"
+
+    this.windowContainer.style.width = "90%"
+    this.windowContainer.style.minHeight = "500px"
+
+    document.body.appendChild(this.windowContainer)
   }
 
   initializeWindow(window) {
     let localWindow = window;
-    let windowElement = document.createElement("div");
-    let titlebar = document.createElement("div");
-    let contentContainer = document.createElement("div")
+    let windowElement = document.createElement("window");
+    let titlebar = document.createElement("window-title");
+    let contentContainer = document.createElement("window-content");
+
+    windowElement.style.display = "block"
+    contentContainer.style.display = "block"
+    titlebar.style.display = "block"
 
     titlebar.style.backgroundColor = "#2c2c2c"
     titlebar.style.width = "100%"
@@ -18,7 +30,7 @@ export class DisplayManager {
     localWindow.element = windowElement;
 
     localWindow.element.style.overflow = "hidden";
-    localWindow.element.style.position = "absolute";
+    localWindow.element.style.position = "relative";
     localWindow.element.style.width = window.width + "px";
     localWindow.element.style.height = window.height + "px";
 
@@ -59,7 +71,7 @@ export class DisplayManager {
     this.windows.push(localWindow);
     localWindow.element.appendChild(titlebar)
     localWindow.element.appendChild(contentContainer)
-    document.body.appendChild(localWindow.element);
+    this.windowContainer.appendChild(localWindow.element);
   }
 
   renderComponent(component, container) {
