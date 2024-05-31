@@ -40,9 +40,33 @@ export class DisplayManager {
     localWindow.element = windowElement;
 
     localWindow.element.style.overflow = "hidden";
+    localWindow.element.style.position = "absolute";
     localWindow.element.style.width = window.width + "px";
     localWindow.element.style.height = window.height + "px";
 
+    // localWindow.element.draggable = true;
+    let offsetX, offsetY;
+
+    localWindow.element.addEventListener("mousedown", onMouseDown);
+
+    function onMouseDown(e) {
+      offsetX = e.clientX - localWindow.element.offsetLeft;
+      offsetY = e.clientY -  localWindow.element.offsetTop;
+      localWindow.element.addEventListener("mousemove", onMouseMove);
+      localWindow.element.addEventListener("mouseup", onMouseUp);
+      localWindow.element.addEventListener("mouseleave", onMouseUp);
+    }
+
+    function onMouseMove(e) {
+      localWindow.element.style.left = `${e.clientX - offsetX}px`;
+      localWindow.element.style.top = `${e.clientY - offsetY}px`;
+    }
+
+    function onMouseUp() {
+      localWindow.element.removeEventListener("mousemove", onMouseMove);
+      localWindow.element.removeEventListener("mouseup", onMouseUp);
+      localWindow.element.removeEventListener("mouseleave", onMouseUp);
+    }
     if (localWindow.style) {
       Object.assign(windowElement.style, localWindow.style);
     }
@@ -65,8 +89,13 @@ export class DisplayManager {
       if (typeof component.geometry.x == "number") {
         element.style.left = component.geometry.x + "px";
       } else {
+        element.style.left = component.geometry.x;
       }
-      element.style.top = component.geometry.y + "px";
+      if (typeof component.geometry.y == "number") {
+        element.style.top = component.geometry.y + "px";
+      } else {
+        element.style.top = component.geometry.y;
+      }
       element.style.width = component.geometry.width + "px";
       element.style.height = component.geometry.height + "px";
     }
