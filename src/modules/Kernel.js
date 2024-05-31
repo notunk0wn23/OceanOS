@@ -1,14 +1,16 @@
 // import { FileSystem } from './modules/FileSystem.js'
 import { Process } from './Process.js'
+import { DisplayManager } from './DisplayManager.js'
 
 export class Kernel {
     constructor(version) {
         this.processes = [];
         this.version = version | "0.0.0";
+
     }
 
     boot() {
-        
+        this.displayManager = new DisplayManager()
     }
 
     initProcess() {

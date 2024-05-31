@@ -26,5 +26,4 @@ const app = {
     ],
 };
 
-const displayManager = new DisplayManager()
-displayManager.initializeWindow(app)
+kernel.displayManager.initializeWindow(app)
