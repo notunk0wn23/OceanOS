@@ -1,36 +1,43 @@
 // import { FileSystem } from './modules/FileSystem.js'
-import { Process } from './Process.js'
-import { DisplayManager } from './DisplayManager.js'
+import { Process } from "./Process.js";
+import { DisplayManager } from "./DisplayManager.js";
+import { FileSystem } from "./FileSystem.js";
 
 export class Kernel {
-    constructor(version) {
-        this.processes = [];
-        this.version = version | "0.0.0";
+  constructor(version) {
+    this.processes = [];
+    this.version = version | "0.0.0";
+  }
 
+  boot() {
+    this.configuration = {
+      windowStyle: {
+        cornerRounding: 10,
+      },
+    };
+
+    this.displayManager = new DisplayManager();
+    this.fs = new FileSystem();
+  }
+
+  initProcess() {
+    let pid = this.nextProcessID();
+    this.processes[pid] = new Process(this, pid);
+  }
+
+  nextProcessID() {
+    let id;
+    for (let i = 0; i < this.processes.length; i++) {
+      if (this.processes[i] == undefined) {
+        id = i;
+        break;
+      }
     }
 
-    boot() {
-        this.displayManager = new DisplayManager()
+    if (id == undefined) {
+      id = this.processes.length + 1;
     }
 
-    initProcess() {
-        let pid = this.nextProcessID();
-        this.processes[pid] = new Process(this, pid);
-    }
-
-    nextProcessID() {
-        let id;
-        for (let i = 0; i < this.processes.length; i++) {
-            if (this.processes[i] == undefined) {
-                id = i;
-                break;
-            }
-        }
-
-        if (id == undefined) {
-id = this.processes.length + 1;
-        }
-
-        return id;
-    }
+    return id;
+  }
 }

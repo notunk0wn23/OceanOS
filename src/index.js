@@ -6,21 +6,27 @@ let kernel = new Kernel("0")
 kernel.boot()
 
 const app = {
-    width: 100,
-    height: 100,
+    width: 500,
+    height: 250,
     title: "Example App",
+    style: {
+        backgroundColor: "black"
+    },
     children: [
         {
             type: "button",
             text: "Hello World",
             geometry: {
-                x: 50,
-                y: 0,
+                x: "40%",
+                y: "30%",
                 width: 100,
-                height: 100,
+                height: 75,
+            },
+            onLoad: function() {
+                console.log("Hello world button loaded");
             },
             onClick: function() {
-                console.log("Hello world button pressed");
+                console.log(this.geometry.x);
             },
         },
     ],
