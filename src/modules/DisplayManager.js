@@ -66,6 +66,10 @@ export class DisplayManager {
         if (component.style) {
             Object.assign(element.style, component.style);
         }
+
+        if (component.onClick) {
+            element.addEventListener("click", component.onClick)
+        }
         if (component.children) {
             component.children.forEach((child) => this.renderComponent(child));
         }
