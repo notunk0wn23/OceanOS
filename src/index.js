@@ -20,7 +20,7 @@ const app = {
                 x: "40%",
                 y: "30%",
                 width: 100,
-                height: 75,
+                height: 100,
             },
             onLoad: function() {
                 console.log("Hello world button loaded");

@@ -1,33 +1,4 @@
 import { UIElement } from "./UIElement.js";
-/*
- * OK so everything af
- *
- *
- *
- *
- *
- * */
-
-const app = {
-  width: 100,
-  height: 100,
-  title: "Example App",
-  children: [
-    {
-      type: "button",
-      text: "Hello World",
-      geometry: {
-        x: 0,
-        y: 0,
-        width: 50,
-        height: 100,
-      },
-      onClick: function () {
-        console.log("Hello world button pressed");
-      },
-    },
-  ],
-};
 
 export class DisplayManager {
   constructor() {
@@ -37,6 +8,13 @@ export class DisplayManager {
   initializeWindow(window) {
     let localWindow = window;
     let windowElement = document.createElement("div");
+    let titlebar = document.createElement("div");
+    let contentContainer = document.createElement("div")
+
+    titlebar.style.backgroundColor = "#2c2c2c"
+    titlebar.style.width = "100%"
+    titlebar.style.height = "25px";
+
     localWindow.element = windowElement;
 
     localWindow.element.style.overflow = "hidden";
@@ -44,10 +22,13 @@ export class DisplayManager {
     localWindow.element.style.width = window.width + "px";
     localWindow.element.style.height = window.height + "px";
 
-    // localWindow.element.draggable = true;
+    contentContainer.width = "100%"
+    contentContainer.height = localWindow.element.style.height;
+
+    // Dragging 
     let offsetX, offsetY;
 
-    localWindow.element.addEventListener("mousedown", onMouseDown);
+    titlebar.addEventListener("mousedown", onMouseDown);
 
     function onMouseDown(e) {
       offsetX = e.clientX - localWindow.element.offsetLeft;
@@ -72,10 +53,12 @@ export class DisplayManager {
     }
 
     localWindow.children.forEach((component) =>
-      this.renderComponent(component, localWindow.element),
+      this.renderComponent(component, contentContainer),
     );
 
     this.windows.push(localWindow);
+    localWindow.element.appendChild(titlebar)
+    localWindow.element.appendChild(contentContainer)
     document.body.appendChild(localWindow.element);
   }
 

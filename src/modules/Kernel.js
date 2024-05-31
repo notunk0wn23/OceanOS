@@ -10,12 +10,6 @@ export class Kernel {
   }
 
   boot() {
-    this.configuration = {
-      windowStyle: {
-        cornerRounding: 10,
-      },
-    };
-
     this.displayManager = new DisplayManager();
     this.fs = new FileSystem();
   }
