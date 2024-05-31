@@ -1,4 +1,4 @@
-export default class UIElement {
+export class UIElement {
     constructor(type) {
         this.DOMElement = document.createElement(type == null ? "div" : type);
     }
