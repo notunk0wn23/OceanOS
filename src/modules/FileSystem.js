@@ -1,52 +1,48 @@
-// import { FSFileExistsError } from "./Errors.js";
+export class FileSystem {
+  constructor() {
+    this.root = new Directory("/");
+  }
 
-class File {
-    constructor(path, data) {
-        this.path = path;
-        this.data = data;
+  // Get a specific file or directory by path
+  get(path) {
+    const parts = path.split("/"); // Split path by "/" separator
+    let current = this.root;
+    for (let i = 1; i < parts.length; i++) {
+      const name = parts[i];
+      current = current.get(name);
+      if (!current) {
+        return null; // Path not found
+      }
     }
-
-    toString() {
-        return `File(path='${this.path}', data='${this.data}')`;
-    }
+    return current;
+  }
 }
 
 class Directory {
-    constructor(path) {
-        this.path = path;
-        this.children = {};
-    }
+  constructor(name) {
+    this.name = name;
+    this.children = {}; // Key: child name, Value: child object (File or Directory)
+  }
 
-    addChild(name, child) {
-        if (this.children[name]) {
-            throw new Error(`File or directory already exists: ${name}`);
-        }
-        this.children[name] = child;
+  // Add a file or directory to the current directory
+  add(child) {
+    if (child.name in this.children) {
+      throw new Error("File or directory already exists");
     }
+    this.children[child.name] = child;
+  }
 
-    getChild(name) {
-        return this.children.get(name);
-    }
-
-    toString() {
-        return `Directory(path='${this.path}', children=${JSON.stringify(this.children)})`;
-    }
+  // Get a file or directory by name from the current directory
+  get(name) {
+    return this.children[name];
+  }
 }
 
-class FileSystem {
-    constructor() {
-        this.root = new Directory("/");
-    }
-
-    resolvePath(path) {
-        const components = path.strip("/").split("/");
-        let current = this.root;
-        for (const component of components) {
-            if (component === "") continue;
-            const child = current.getChild(component);
-            if (!child) return null;
-            current = child;
-        }
-        return current;
-    }
+class File {
+  constructor(name, content) {
+    this.name = name;
+    this.content = content;
+  }
 }
+
+
