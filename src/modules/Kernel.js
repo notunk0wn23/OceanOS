@@ -14,9 +14,9 @@ export class Kernel {
     this.fs = new FileSystem();
   }
 
-  initProcess() {
+  initProcess(process) {
     let pid = this.nextProcessID();
-    this.processes[pid] = new Process(this, pid);
+    this.processes[pid] = new Process(this, pid, process);
   }
 
   nextProcessID() {

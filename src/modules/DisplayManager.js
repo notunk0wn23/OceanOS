@@ -14,8 +14,8 @@ export class DisplayManager {
         document.body.appendChild(this.windowContainer);
     }
 
-    initializeWindow(config) {
-        const window = new Window(null, this, config);
+    initializeWindow(config, process) {
+        const window = new Window(process, this, config);
         this.windowContainer.appendChild(window.element);
     }
 }
