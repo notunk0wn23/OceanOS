@@ -5,13 +5,13 @@ let kernel = new Kernel("0");
 kernel.boot();
 
 kernel.initProcess({
-    name: "BackgroundProcess",
+    name: "HelloWorldExampleProgram",
     onLoad: function(fs, display) {
         console.log("Background Process loaded!");
     },
     window: {
-        width: 500,
-        height:400,
+        width: 600,
+        height: 400,
         title: "Example App", // Name shown in the titlebar
         children: [
             // All elements are located in here
@@ -20,10 +20,10 @@ kernel.initProcess({
                 text: "print Hello World", // Inner text of the element
                 geometry: {
                     // Contains position and size data
-                    x: "calc(50% - 50px)",
+                    x: "calc(50% - 75px)",
                     y: "calc(50% - 50px)",
-                    width: 100,
-                    height: 100,
+                    width: 150,
+                    height: 75,
                 },
                 style: {
                     marginTop: "-50px",

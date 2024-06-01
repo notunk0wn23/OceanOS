@@ -113,21 +113,22 @@ export class Window {
         this.element.style.resize = "both"
         this.element.style.width = String(this.width) + "px";
         this.element.style.height = String(this.height) + "px";
-        this.element.style.backgroundColor = "#1c1c1c"
+        this.element.style.backgroundColor = "red"
         this.element.style.borderRadius = "10px";
 
-        this.titlebar.style.backgroundColor = "#2c2c2c";
+        this.titlebar.style.backgroundColor = "#1c1c1c";
         this.titlebar.style.width = "100%";
         this.titlebar.style.height = "25px";
         this.titlebar.style.color = "white"
         this.titlebar.style.lineHeight = "25px"
         this.titlebar.style.textAlign = "center"
+        this.titlebar.borderRadius = "10px 10px 0px 0px"
         this.titlebar.textContent = config.title
         
 
-
+        this.content.style.backgroundColor = "#2c2c2c"
         this.content.style.width = "100%";
-        this.content.style.height = "100%";
+        this.content.style.height = "calc(100% - 25px)";
 
         if (config.style) {
             Object.assign(this.element, config.style);
