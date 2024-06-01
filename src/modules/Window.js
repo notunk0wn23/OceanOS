@@ -114,7 +114,7 @@ export class Window {
         this.element.style.width = String(this.width) + "px";
         this.element.style.height = String(this.height) + "px";
         this.element.style.backgroundColor = "#1c1c1c"
-        this.element.style.borderRadius = "5px";
+        this.element.style.borderRadius = "10px";
 
         this.titlebar.style.backgroundColor = "#2c2c2c";
         this.titlebar.style.width = "100%";
