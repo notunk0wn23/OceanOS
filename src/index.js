@@ -33,3 +33,5 @@ const app = {
 };
 
 kernel.displayManager.initializeWindow(app)
+app.children = []
+kernel.displayManager.initializeWindow(app)

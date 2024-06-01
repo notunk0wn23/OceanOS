@@ -7,8 +7,10 @@ OceanOS is an operating system written in Javascript made for the web.
  - Install vite `npm install --save-dev vite`
  - Start it locally `npm start dev`
 
+## Processes
+
 ## Window system 
-The window system uses JSON to define apps and windows. Here's an example:
+Similar to processes, The window system uses JSON to define apps and windows. Here's an example:
 ```javascript
 const app = {
     width: 100,
