@@ -17,9 +17,9 @@ kernel.initProcess({
             // All elements are located in here
             {
                 type: "button", // Type, based off of the HTML tag
-                text: "Hello World", // Inner text of the element
+                text: "print Hello World", // Inner text of the element
                 geometry: {
-                    // Contains position:weal and size data
+                    // Contains position and size data
                     x: "calc(50% - 50px)",
                     y: "calc(50% - 50px)",
                     width: 100,
@@ -28,13 +28,15 @@ kernel.initProcess({
                 style: {
                     marginTop: "-50px",
                 },
-                onLoad: function() {
+                onLoad: function(config, element) {
                     // Run JS function when the element is added to the DOM
                     console.log("Button Loaded");
+                    console.log("App title: " + config.title)
                 },
-                onClick: function() {
+                onClick: function(processConfig, element) {
                     // Run JS function on click
                     console.log("Hello world button pressed");
+                    //element.textContent = "Check console"
                 },
             },
         ],

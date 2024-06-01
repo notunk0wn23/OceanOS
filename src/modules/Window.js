@@ -53,7 +53,7 @@ const dragElement = function(element, container) {
     }
 };
 
-const renderComponent = function(component, container) {
+const renderComponent = function(component, container, processConfig) {
     const element = document.createElement(component.type);
     if (component.text) {
         element.textContent = component.text;
@@ -78,7 +78,7 @@ const renderComponent = function(component, container) {
     }
 
     if (component.onClick) {
-        element.addEventListener("click", component.onClick);
+        element.addEventListener("onclick", component.onClick);
     }
     if (component.children) {
         component.children.forEach((child) => this.renderComponent(child));
@@ -86,7 +86,7 @@ const renderComponent = function(component, container) {
 
     container.appendChild(element);
     if (component.onLoad) {
-        component.onLoad();
+        component.onLoad(processConfig, element);
     }
 };
 
@@ -119,6 +119,12 @@ export class Window {
         this.titlebar.style.backgroundColor = "#2c2c2c";
         this.titlebar.style.width = "100%";
         this.titlebar.style.height = "25px";
+        this.titlebar.style.color = "white"
+        this.titlebar.style.lineHeight = "25px"
+        this.titlebar.style.textAlign = "center"
+        this.titlebar.textContent = config.title
+        
+
 
         this.content.style.width = "100%";
         this.content.style.height = "100%";
@@ -128,7 +134,7 @@ export class Window {
         }
 
         config.children.forEach((component) => {
-            renderComponent(component, this.content)
+            renderComponent(component, this.content, config)
         })
 
         this.element.appendChild(this.titlebar);
