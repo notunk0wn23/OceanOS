@@ -16,6 +16,10 @@ export class Process {
         if (content.window) {
             kernel.displayManager.initializeWindow(content.window)
         }
+
+        if (content.onLoad) {
+            content.onLoad(kernel, kernel.fs)
+        }
     }
 
     kill() {

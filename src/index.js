@@ -10,8 +10,8 @@ kernel.initProcess({
         console.log("Background Process loaded!");
     },
     window: {
-        width: 100,
-        height: 100,
+        width: 500,
+        height:400,
         title: "Example App", // Name shown in the titlebar
         children: [
             // All elements are located in here
@@ -19,11 +19,14 @@ kernel.initProcess({
                 type: "button", // Type, based off of the HTML tag
                 text: "Hello World", // Inner text of the element
                 geometry: {
-                    // Contains positional and size data
-                    x: 50,
-                    y: 0,
+                    // Contains position:weal and size data
+                    x: "calc(50% - 50px)",
+                    y: "calc(50% - 50px)",
                     width: 100,
                     height: 100,
+                },
+                style: {
+                    marginTop: "-50px",
                 },
                 onLoad: function() {
                     // Run JS function when the element is added to the DOM

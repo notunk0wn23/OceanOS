@@ -110,6 +110,7 @@ export class Window {
 
         this.element.style.overflow = "hidden";
         this.element.style.position = "absolute";
+        this.element.style.resize = "both"
         this.element.style.width = String(this.width) + "px";
         this.element.style.height = String(this.height) + "px";
         this.element.style.backgroundColor = "#1c1c1c"
@@ -121,6 +122,10 @@ export class Window {
 
         this.content.style.width = "100%";
         this.content.style.height = "100%";
+
+        if (config.style) {
+            Object.assign(this.element, config.style);
+        }
 
         config.children.forEach((component) => {
             renderComponent(component, this.content)
