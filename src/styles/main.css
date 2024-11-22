@@ -1,0 +1,243 @@
+:root {
+    /* Material Design 3 System Colors */
+    --md-primary: #006399;
+    --md-on-primary: #ffffff;
+    --md-primary-container: #cde5ff;
+    --md-on-primary-container: #001d32;
+    
+    --md-secondary: #006874;
+    --md-on-secondary: #ffffff;
+    --md-secondary-container: #97f0ff;
+    --md-on-secondary-container: #001f24;
+    
+    --md-tertiary: #006874;
+    --md-on-tertiary: #ffffff;
+    --md-tertiary-container: #97f0ff;
+    --md-on-tertiary-container: #001f24;
+    
+    --md-error: #ba1a1a;
+    --md-on-error: #ffffff;
+    --md-error-container: #ffdad6;
+    --md-on-error-container: #410002;
+    
+    --md-surface: #1a1c1e;
+    --md-on-surface: #e2e2e6;
+    --md-surface-variant: #42474e;
+    --md-on-surface-variant: #c2c7cf;
+    
+    --md-outline: #8c9198;
+    --md-outline-variant: #42474e;
+    
+    --md-background: #1a1c1e;
+    --md-on-background: #e2e2e6;
+
+    /* Material Design 3 State Layers */
+    --md-state-hover: 8%;
+    --md-state-focus: 12%;
+    --md-state-pressed: 12%;
+    --md-state-dragged: 16%;
+
+    /* Material Design 3 Elevation */
+    --md-elevation-1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    --md-elevation-2: 0px 2px 6px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
+    --md-elevation-3: 0px 1px 3px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+    --md-elevation-4: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+    --md-elevation-5: 0px 4px 4px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --md-primary: #006399;
+        --md-on-primary: #ffffff;
+        --md-primary-container: #cde5ff;
+        --md-on-primary-container: #001d32;
+        
+        --md-surface: #fdfbff;
+        --md-on-surface: #1a1c1e;
+        --md-surface-variant: #dfe2eb;
+        --md-on-surface-variant: #42474e;
+        
+        --md-outline: #73777f;
+        --md-outline-variant: #c2c7cf;
+        
+        --md-background: #fdfbff;
+        --md-on-background: #1a1c1e;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--md-background);
+    color: var(--md-on-background);
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Desktop Styles */
+.desktop {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.desktop-space {
+    flex: 1;
+    position: relative;
+}
+
+.taskbar {
+    height: 48px;
+    background: var(--md-surface);
+    border-top: 1px solid var(--md-outline);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 16px;
+    box-shadow: var(--md-elevation-1);
+}
+
+.start-button {
+    padding: 8px 16px;
+    background: var(--md-primary-container);
+    color: var(--md-on-primary-container);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.start-button:hover {
+    background: color-mix(in srgb, var(--md-primary-container) var(--md-state-hover), transparent);
+}
+
+/* Window styles */
+.process-window {
+    position: absolute;
+    background: var(--md-surface);
+    border-radius: 8px;
+    box-shadow: var(--md-elevation-2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.window-titlebar {
+    background: var(--md-surface-variant);
+    color: var(--md-on-surface-variant);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: move;
+}
+
+.window-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.window-controls button {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--md-on-surface-variant);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.window-controls button:hover {
+    background: color-mix(in srgb, var(--md-on-surface-variant) var(--md-state-hover), transparent);
+}
+
+.window-content {
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+}
+
+/* Boot Screen */
+.boot-screen {
+    width: 100vw;
+    height: 100vh;
+    background: var(--md-background);
+    color: var(--md-on-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 4px;
+    background: var(--md-surface-variant);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 0;
+    height: 100%;
+    background: var(--md-primary);
+    transition: width 1s ease-in-out;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: color-mix(in srgb, var(--md-on-surface) 8%, transparent);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--md-on-surface) 24%, transparent);
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--md-on-surface) 32%, transparent);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* Selection styles */
+::selection {
+    background: color-mix(in srgb, var(--md-primary) 32%, transparent);
+    color: var(--md-on-surface);
+}
